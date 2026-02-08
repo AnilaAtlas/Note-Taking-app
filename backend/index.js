@@ -1,22 +1,22 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import note_routes from './routes/note_route.js';  
-const app = express()
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import note_routes from "./routes/note_route.js";
+import cors from "cors";
 dotenv.config();
+const app = express();
+import dns from "node:dns/promises";
+dns.setServers(["1.1.1.1", "1.0.0.1"]);
 
-const port = process.env.PORT || 4002
+const port = process.env.PORT || 4002;
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ Database connected"))
-.catch(err => console.error("❌ Database connection error:", err));
-
-
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ Database connection error:", err));
+app.use(cors());
 app.use(express.json());
 app.use("/api/v1/noteapp", note_routes);
 app.listen(port, () => {
-  console.log(`server is running on port ${port}`)
-})
+  console.log(`server is running on port ${port}`);
+});
