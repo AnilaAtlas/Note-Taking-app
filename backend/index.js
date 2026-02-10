@@ -18,5 +18,5 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/v1/noteapp", note_routes);
 app.listen(port, () => {
-  console.log(`server is running on port ${port}`);
+  console.log(`server is running on port: ${port}`);
 });
