@@ -11,7 +11,7 @@ function App() {
     return (
         <ErrorBoundary>
             <NoteProvider>                    
-                <div>
+                <div className='flex flex-col min-h-screen bg-indigo-200 text-white'>
                     <Navbar />
                     <main className="flex-1 container mx-auto p-4">
                         <Routes>
